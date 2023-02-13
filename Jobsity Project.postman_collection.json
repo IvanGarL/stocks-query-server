@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "88a908e1-3bd9-438f-8325-eb21e3fb0bce",
+		"name": "Jobsity Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User signUp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"Auth\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"felipegarl@yopmail.com\",\n    \"password\": \"123456789abcd\",\n    \"passwordConfirmation\": \"123456789abcd\",\n    \"role\": \"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basicUrl}}/users/register",
+					"host": [
+						"{{basicUrl}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User logIn",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"Auth\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"ivangarl@yopmail.com\",\n    \"password\": \"123456789abcd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basicUrl}}/users/logIn",
+					"host": [
+						"{{basicUrl}}"
+					],
+					"path": [
+						"users",
+						"logIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock Daily History",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{basicUrl}}/stock?q=aapl.us",
+					"host": [
+						"{{basicUrl}}"
+					],
+					"path": [
+						"stock"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "aapl.us"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock User History",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basicUrl}}/stock/history?skip=0&take=4",
+					"host": [
+						"{{basicUrl}}"
+					],
+					"path": [
+						"stock",
+						"history"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "take",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock Top 5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basicUrl}}/stock/stats",
+					"host": [
+						"{{basicUrl}}"
+					],
+					"path": [
+						"stock",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

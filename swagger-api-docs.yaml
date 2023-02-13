@@ -1,0 +1,197 @@
+swagger: "2.0"
+info:
+  description: "Description of a small server allowed to register/login clients and serve them with daily stock history information."
+  version: "1.0.0"
+  title: "Jobsity NodeJS Challengue server"
+  contact:
+    email: "ivangarcialaverde@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/"
+
+tags:
+- name: "Stock"
+  description: "Information about user stock requests"
+- name: "User"
+  description: "Register and LogIn"
+
+schemes:
+- "http"
+paths:
+  /stock:
+    get:
+      tags:
+      - "Stock"
+      description: "Returns the daily information about one stock"
+      operationId: "getStock"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "query"
+          name: "q"
+          type: "string"
+          description: "symbol of the stock to be requested"
+      responses:
+        "200":
+          description: "successful request"
+          schema:
+            $ref: "#/definitions/StockDaily"
+  /stock/history:
+    get:
+      tags:
+      - "Stock"
+      description: "Returns the daily information about one stock"
+      operationId: "getClientStocksRequests"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "query"
+          name: "skip"
+          type: "number"
+          description: "pagination skip parameter"
+        - in: "query"
+          name: "take"
+          type: "number"
+          description: "pagination take parameter"
+      responses:
+        "200":
+          description: "successful request"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/StockDaily"
+  /stock/stats:
+    get:
+      tags:
+      - "Stock"
+      description: "Returns the top 5 most requested stocks"
+      operationId: "getAllClientTopRequest" 
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful request"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TopStock"
+  /users/register:
+    post:
+      tags:
+      - "User"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "201":
+          description: "successful register"
+          headers:
+            Authorization:
+              type: "string"
+              description: "JWT to handdle authorization in further requests"
+  /users/login:
+    get:
+      tags:
+      - "User"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+          headers:
+            Authorization:
+              type: "string"
+              description: "JWT to handdle authorization in further requests"
+        "400":
+          description: "Invalid username/password supplied"
+
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "UUID"
+      name:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      role:
+        type: "string"
+        description: "User privileges"
+        enum:
+        - "user"
+        - "admin"
+      createdAt:
+        type: "string"
+        format: "date"
+    xml:
+      name: "User"
+  StockDaily:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "UUID"
+      date:
+        type: "string"
+        format: "date"
+      name:
+        type: "string"
+      symbol:
+        type: "string"
+      open:
+        type: "number"
+        format: "float64"
+      high:
+        type: "number"
+        format: "float64"
+      low:
+        type: "number"
+        format: "float64"
+      close:
+        type: "number"
+        format: "float64"
+    xml:
+      name: "StockDaily"
+  TopStock:
+    type: "object"
+    properties:
+      symbol:
+        type: "string"
+      times_requested:
+        type: "integer"
+        format: "integer64"
+    xml:
+      name: "TopStock"
