@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: "Description of a small server allowed to register/login clients and serve them with daily stock history information."
   version: "1.0.0"
-  title: "Jobsity NodeJS Challengue server"
+  title: "Stocks Query Server"
   contact:
     email: "ivangarcialaverde@gmail.com"
   license:

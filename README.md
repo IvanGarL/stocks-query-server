@@ -22,12 +22,7 @@ Instructions to run the server
 - Docs:  
     To visualize the swagger api documentation please open the project in VSCode and install the extension 'Swagger Viewer' then right-click on ```swagger-api-docs.yaml``` and click the option 'Preview Swagger'.  
 
-    Also theres the option of exploring the services using the Postman collection available in the root directory. Import the file 'Jobsity Project.postman_collection.json' to postman and create a new env variable called ```basicUrl``` with the value of 'http://localhost:8080'.  
-
-- PDTA:
-    * I know the secrets are exposed when they are left burnt in the code but in production all the configurations or secrets could be hosted in a cloud secrets service such as AWS Secrets-Manager.  
-
-    * :warning: Unity or integration test were not implemented but I could expose a methodology on how to do it using jest.
+    Also theres the option of exploring the services using the Postman collection available in the root directory. Import the file 'StocksQueryServer.postman_collection.json' to postman and create a new env variable called ```basicUrl``` with the value of 'http://localhost:8080'.
     
 
 

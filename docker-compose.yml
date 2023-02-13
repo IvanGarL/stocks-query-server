@@ -11,7 +11,7 @@ services:
       POSTGRES_DB: "db"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-  jobsity_app:
+  backend_app:
     build: .
     depends_on:
       - db

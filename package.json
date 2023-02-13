@@ -1,5 +1,5 @@
 {
-    "name": "jobsity_be",
+    "name": "stocks_server",
     "license": "Apache license Version 2.0",
     "version": "0.0.0",
     "scripts": {
