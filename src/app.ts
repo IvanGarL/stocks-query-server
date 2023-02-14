@@ -2,15 +2,15 @@ import * as express from 'express';
 import { getConnection } from './database/db';
 import Routes from './interfaces/routes.interface';
 import errorMiddleware from './middlewares/error.middleware';
-
+import 'dotenv/config'
 class App {
     public app: express.Application;
     public port: string | number;
 
     constructor(routes: Routes[]) {
         this.app = express();
-        this.port = process.env.PORT || 8080;
-
+        this.port = process.env.PORT || 8081;
+        
         this.initializeMiddlewares();
         this.initializeRoutes(routes);
         this.initializeErrorHandling();

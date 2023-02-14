@@ -21,6 +21,7 @@
         "chance": "^1.1.7",
         "cors": "^2.8.5",
         "cross-env": "^7.0.3",
+        "dotenv": "^16.0.3",
         "express": "^4.17.1",
         "joi": "^17.6.0",
         "jsonwebtoken": "^8.5.1",
