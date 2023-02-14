@@ -33,7 +33,8 @@
         "typeorm-naming-strategies": "^1.3.0"
     },
     "devDependencies": {
+        "@types/express-serve-static-core": "^4.17.30",
         "ts-node-dev": "^1.1.6",
-        "typescript": "^3.9.9"
+        "typescript": "^4.1.6"
     }
 }
