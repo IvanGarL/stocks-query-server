@@ -13,7 +13,7 @@ Instructions to run the server
         npm install 
         ```. 
         ```
-        npm start 
+        npm run start 
         ```. 
 
 - Deploy with docker.  
